@@ -22,6 +22,30 @@ function Example() &#123;
 &#125;</code></pre>
 <h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><font color=#ff0000>
 可以实现在函数组件中使用 state count是值,setCount是修改的方法
-</font>]]></content>
+</font>
+
+<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2><pre><code>import React, &#123; useState, useEffect &#125; from &#39;react&#39;;
+
+function Example() &#123;
+  const [count, setCount] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() =&gt; &#123;
+    // Update the document title using the browser API
+    document.title = `You clicked $&#123;count&#125; times`;
+  &#125;);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;
+      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+&#125;</code></pre>
+<p><strong>&lt;font color==#00000 &gt;很多情况下，我们希望在组件加载和更新时执行同样的操作。从概念上说，我们希望它在每次渲染之后执行 —— 但 React 的 class 组件没有提供这样的方法。即使我们提取出一个方法，我们还是要在两个地方调用它。</font></strong></p>
+<h2 id="useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来"><a href="#useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来" class="headerlink" title="useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来"></a>useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来</h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p><font color=red>不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。遵守这条规则，你就能确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。<br><font/></p>
+]]></content>
   </entry>
 </search>

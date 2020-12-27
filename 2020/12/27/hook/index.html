@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="hook的使用 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="第一篇博客好吃的">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/hello-world.html">
+<meta property="og:title" content="liu">
+<meta property="og:url" content="http://example.com/liu.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="第一篇博客好吃的">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-12-27T11:39:36.762Z">
-<meta property="article:modified_time" content="2020-12-27T11:39:36.762Z">
+<meta property="article:published_time" content="2020-12-25T07:46:30.000Z">
+<meta property="article:modified_time" content="2020-12-27T11:39:43.256Z">
 <meta property="article:author" content="前端菜鸟">
 <meta name="twitter:card" content="summary">
 
@@ -259,7 +259,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2020-12-27 20:04:49'>2020-12-27 19:40</time>
+            Created At : <time class="date" title='Updated At: 2020-12-27 20:55:58'>2020-12-27 19:40</time>
         
     </div>
     <div class="article-meta">
@@ -292,7 +292,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hook%E7%AE%80%E4%BB%8B"><span class="toc-text">hook简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#useState%E4%BD%BF%E7%94%A8"><span class="toc-text">useState使用</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useState"><span class="toc-text">useState</span></a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hook%E7%AE%80%E4%BB%8B"><span class="toc-text">hook简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#useState%E4%BD%BF%E7%94%A8"><span class="toc-text">useState使用</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useState"><span class="toc-text">useState</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useEffect"><span class="toc-text">useEffect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useEffect%E6%98%AF%E5%9C%A8%E5%8A%A0%E8%BD%BD%E5%89%8D%E6%88%96%E6%9B%B4%E6%96%B0%E6%97%B6%E9%83%BD%E4%BC%9A%E4%BD%BF%E7%94%A8-%E6%9B%BF%E4%BB%A3%E4%BA%86componentDidMount-%E5%92%8CcomponentDidUpdate-%E9%9B%86%E5%90%88%E8%B5%B7%E6%9D%A5"><span class="toc-text">useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a>
     
 <style>
     .left-col .switch-btn,
@@ -328,6 +328,30 @@ function Example() &#123;
 <h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><font color=#ff0000>
 可以实现在函数组件中使用 state count是值,setCount是修改的方法
 </font>
+
+<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2><pre><code>import React, &#123; useState, useEffect &#125; from &#39;react&#39;;
+
+function Example() &#123;
+  const [count, setCount] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() =&gt; &#123;
+    // Update the document title using the browser API
+    document.title = `You clicked $&#123;count&#125; times`;
+  &#125;);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;
+      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+&#125;</code></pre>
+<p><strong>&lt;font color==#00000 &gt;很多情况下，我们希望在组件加载和更新时执行同样的操作。从概念上说，我们希望它在每次渲染之后执行 —— 但 React 的 class 组件没有提供这样的方法。即使我们提取出一个方法，我们还是要在两个地方调用它。</font></strong></p>
+<h2 id="useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来"><a href="#useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来" class="headerlink" title="useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来"></a>useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来</h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p><font color=red>不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。遵守这条规则，你就能确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。<br><font/></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
