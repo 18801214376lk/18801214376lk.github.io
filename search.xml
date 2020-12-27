@@ -3,17 +3,13 @@
   <entry>
     <title>hook的使用</title>
     <url>/2020/12/27/hook/</url>
-    <content><![CDATA[<ul>
-<li>hook简介<font color=#FF0000 >
-   Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
+    <content><![CDATA[<h3 id="hook简介"><a href="#hook简介" class="headerlink" title="hook简介"></a>hook简介</h3><font color=#FF0000 >
+     Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
 </font>
 
-</li>
-</ul>
-<h5 id="useState使用"><a href="#useState使用" class="headerlink" title="useState使用"></a>useState使用</h5><blockquote>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 代码 --&gt;</span><br><span class="line">&lt;font color&#x3D;#000 &gt;</span><br><span class="line">import React, &#123; useState &#125; from &#39;react&#39;;</span><br><span class="line">function Example() &#123;</span><br><span class="line"> &#x2F;&#x2F; 声明一个新的叫做 “count” 的 state 变量</span><br><span class="line"> const [count, setCount] &#x3D; useState(0);</span><br><span class="line"> return (</span><br><span class="line">   &lt;div&gt;</span><br><span class="line">     &lt;p&gt;You clicked &#123;count&#125; times&lt;&#x2F;p&gt;</span><br><span class="line">     &lt;button onClick&#x3D;&#123;() &#x3D;&gt; setCount(count + 1)&#125;&gt;</span><br><span class="line">       Click me</span><br><span class="line">     &lt;&#x2F;button&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line"> );</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;font&gt;</span><br></pre></td></tr></table></figure></blockquote>
-</blockquote>
-]]></content>
+<h5 id="useState使用"><a href="#useState使用" class="headerlink" title="useState使用"></a>useState使用</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import React, &#123; useState &#125; from &#39;react&#39;;</span><br><span class="line">function Example() &#123;</span><br><span class="line">  &#x2F;&#x2F; 声明一个新的叫做 “count” 的 state 变量</span><br><span class="line">  const [count, setCount] &#x3D; useState(0);</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;You clicked &#123;count&#125; times&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;() &#x3D;&gt; setCount(count + 1)&#125;&gt;</span><br><span class="line">        Click me</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><font color=#ff0000>
+可以实现在函数组件中使用 state count是值,setCount是修改的方法
+</font>]]></content>
   </entry>
 </search>
