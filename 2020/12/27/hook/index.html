@@ -312,7 +312,19 @@
      Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
 </font>
 
-<h5 id="useState使用"><a href="#useState使用" class="headerlink" title="useState使用"></a>useState使用</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useState &#125; from &#39;react&#39;;</span><br><span class="line">function Example() &#123;</span><br><span class="line">  &#x2F;&#x2F; 声明一个新的叫做 “count” 的 state 变量</span><br><span class="line">  const [count, setCount] &#x3D; useState(0);</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;You clicked &#123;count&#125; times&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;() &#x3D;&gt; setCount(count + 1)&#125;&gt;</span><br><span class="line">        Click me</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="useState使用"><a href="#useState使用" class="headerlink" title="useState使用"></a>useState使用</h5><pre><code>import React, &#123; useState &#125; from &#39;react&#39;;
+function Example() &#123;
+  // 声明一个新的叫做 “count” 的 state 变量
+  const [count, setCount] = useState(0);
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;
+      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+&#125;</code></pre>
 <h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><font color=#ff0000>
 可以实现在函数组件中使用 state count是值,setCount是修改的方法
 </font>
