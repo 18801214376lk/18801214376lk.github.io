@@ -1,7 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>hook的使用</title>
+    <title>class的总结</title>
+    <url>/2020/12/28/class/</url>
+    <content><![CDATA[<h3 id="js语言中，生成实例对象的传统方法是构造函数"><a href="#js语言中，生成实例对象的传统方法是构造函数" class="headerlink" title="js语言中，生成实例对象的传统方法是构造函数"></a>js语言中，生成实例对象的传统方法是构造函数</h3><pre><code>function Point(x, y) &#123;
+  this.x = x;
+  this.y = y;
+&#125;
+
+Point.prototype.toString = function () &#123;
+  return &#39;(&#39; + this.x + &#39;, &#39; + this.y + &#39;)&#39;;
+&#125;;
+
+var p = new Point(1, 2);</code></pre>
+<h3 id="ES6-提供了更接近传统语言的写法，引入了-Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。"><a href="#ES6-提供了更接近传统语言的写法，引入了-Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。" class="headerlink" title="ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。"></a>ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。</h3><h3 id="改写-同上"><a href="#改写-同上" class="headerlink" title="改写,同上"></a>改写,同上</h3><pre><code>class Point &#123;
+  constructor(x, y) &#123;
+    this.x = x;
+    this.y = y;
+  &#125;
+
+  toString() &#123;
+    return &#39;(&#39; + this.x + &#39;, &#39; + this.y + &#39;)&#39;;
+  &#125;
+&#125;</code></pre>
+<h3 id="class-类有一个constructor方法，这就是构造方法-就算你不调用也会执行-this则代表了实例对象。"><a href="#class-类有一个constructor方法，这就是构造方法-就算你不调用也会执行-this则代表了实例对象。" class="headerlink" title="class 类有一个constructor方法，这就是构造方法,(就算你不调用也会执行) this则代表了实例对象。"></a>class 类有一个constructor方法，这就是构造方法,(就算你不调用也会执行) this则代表了实例对象。</h3><h3 id="定义类方法不需要function关键字-Point也不是对象-各个方法之间也不需要用’-’隔开。"><a href="#定义类方法不需要function关键字-Point也不是对象-各个方法之间也不需要用’-’隔开。" class="headerlink" title="定义类方法不需要function关键字,Point也不是对象,各个方法之间也不需要用’,’隔开。"></a>定义类方法不需要function关键字,Point也不是对象,各个方法之间也不需要用’,’隔开。</h3><pre><code>class Point &#123;
+  // ...
+&#125;
+
+typeof Point // &quot;function&quot;
+Point === Point.prototype.constructor // true</code></pre>
+<h3 id="这代表类数据类型是函数，使用时也是对类使用-new-命令-跟构造函数的用法完全一致。"><a href="#这代表类数据类型是函数，使用时也是对类使用-new-命令-跟构造函数的用法完全一致。" class="headerlink" title="这代表类数据类型是函数，使用时也是对类使用 new 命令,跟构造函数的用法完全一致。"></a>这代表类数据类型是函数，使用时也是对类使用 new 命令,跟构造函数的用法完全一致。</h3><pre><code>const b = new Point();
+b.toString() //调用</code></pre>
+<h3 id="注·类的所有方法都定义在类的prototype属性上面。调用类的方法-其实就是调用原型上的方法"><a href="#注·类的所有方法都定义在类的prototype属性上面。调用类的方法-其实就是调用原型上的方法" class="headerlink" title="注·类的所有方法都定义在类的prototype属性上面。调用类的方法,其实就是调用原型上的方法."></a>注·类的所有方法都定义在类的prototype属性上面。调用类的方法,其实就是调用原型上的方法.</h3><p><font color=blue><strong>类内部定义的所有方法，都是不可枚举的(non-enumerable),这和es5不同</strong></font></p>
+<pre><code>**es6**
+class Point &#123;
+  constructor(x, y) &#123;
+    // ...
+  &#125;
+  toString() &#123;
+    // ...
+  &#125;
+&#125;
+Object.keys(Point.prototype)
+// []
+Object.getOwnPropertyNames(Point.prototype)
+// [&quot;constructor&quot;,&quot;toString&quot;]</code></pre>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><pre><code>es5
+var Point = function (x, y) &#123;
+  // ...
+&#125;;
+Point.prototype.toString = function () &#123;
+  // ...
+&#125;;
+Object.keys(Point.prototype)
+// [&quot;toString&quot;]
+Object.getOwnPropertyNames(Point.prototype)
+// [&quot;constructor&quot;,&quot;toString&quot;]</code></pre>
+<h3 id="类的实例-实例的属性除非显式定义在其本身（即定义在this对象上），否则都是定义在原型上（即定义在class上）"><a href="#类的实例-实例的属性除非显式定义在其本身（即定义在this对象上），否则都是定义在原型上（即定义在class上）" class="headerlink" title="类的实例(实例的属性除非显式定义在其本身（即定义在this对象上），否则都是定义在原型上（即定义在class上）)"></a>类的实例(实例的属性除非显式定义在其本身（即定义在this对象上），否则都是定义在原型上（即定义在class上）)</h3><pre><code>//定义类
+class Point &#123;
+
+  constructor(x, y) &#123;
+    this.x = x;
+    this.y = y;
+  &#125;
+
+  toString() &#123;
+    return &#39;(&#39; + this.x + &#39;, &#39; + this.y + &#39;)&#39;;
+  &#125;
+
+&#125;
+
+var point = new Point(2, 3);
+
+point.toString() // (2, 3)
+
+point.hasOwnProperty(&#39;x&#39;) // true
+point.hasOwnProperty(&#39;y&#39;) // true
+point.hasOwnProperty(&#39;toString&#39;) // false
+point.__proto__.hasOwnProperty(&#39;toString&#39;) // true</code></pre>
+<h5 id="x和y都是实例point自身属性，所以hasOwnProperty-方法返回true，而toString-是原型对象的属性上，所以hasOwnProperty-方法返回false"><a href="#x和y都是实例point自身属性，所以hasOwnProperty-方法返回true，而toString-是原型对象的属性上，所以hasOwnProperty-方法返回false" class="headerlink" title="x和y都是实例point自身属性，所以hasOwnProperty()方法返回true，而toString()是原型对象的属性上，所以hasOwnProperty()方法返回false"></a>x和y都是实例point自身属性，所以hasOwnProperty()方法返回true，而toString()是原型对象的属性上，所以hasOwnProperty()方法返回false</h5><h3 id="类的所有实例共享一个原型对象"><a href="#类的所有实例共享一个原型对象" class="headerlink" title="类的所有实例共享一个原型对象"></a>类的所有实例共享一个原型对象</h3><pre><code>var p1 = new Point(2,3);
+var p2 = new Point(3,2);
+
+p1.__proto__ === p2.__proto__
+//true</code></pre>
+<h3 id="因为他们的原型都是Point-prototype，所以为true。"><a href="#因为他们的原型都是Point-prototype，所以为true。" class="headerlink" title="因为他们的原型都是Point.prototype，所以为true。"></a>因为他们的原型都是Point.prototype，所以为true。</h3><h3 id="这也意味着，可以通过实例的-proto-属性为“类”添加方法。我们可以使用-Object-getPrototypeOf-方法来获取实例对象的原型，然后再来为原型添加方法-属性。"><a href="#这也意味着，可以通过实例的-proto-属性为“类”添加方法。我们可以使用-Object-getPrototypeOf-方法来获取实例对象的原型，然后再来为原型添加方法-属性。" class="headerlink" title="这也意味着，可以通过实例的__proto__属性为“类”添加方法。我们可以使用 Object.getPrototypeOf 方法来获取实例对象的原型，然后再来为原型添加方法/属性。"></a>这也意味着，可以通过实例的__proto__属性为“类”添加方法。我们可以使用 Object.getPrototypeOf 方法来获取实例对象的原型，然后再来为原型添加方法/属性。</h3><pre><code>p1.__proto__.printName = function () &#123; return &#39;Oops&#39; &#125;;
+
+p1.printName() // &quot;Oops&quot;
+p2.printName() // &quot;Oops&quot;
+
+var p3 = new Point(4,2);
+p3.printName() // &quot;Oops&quot;</code></pre>
+<p><strong>使用实例的__proto__属性改写原型，必须相当谨慎，不推荐使用，因为这会改变“类”的原始定义，影响到所有实例</strong></p>
+<h2 id="取值函数-getter-和存值函数-setter-在类的内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为"><a href="#取值函数-getter-和存值函数-setter-在类的内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为" class="headerlink" title="取值函数(getter)和存值函数(setter) 在类的内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为"></a>取值函数(getter)和存值函数(setter) 在类的内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为</h2><h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><pre><code>class MyClass &#123;
+  constructor() &#123;
+    // ...
+  &#125;
+  get prop() &#123;
+    return &#39;getter&#39;;
+  &#125;
+  set prop(value) &#123;
+    console.log(&#39;setter: &#39;+value);
+  &#125;
+&#125;
+
+let inst = new MyClass();
+
+inst.prop = 123;// setter: 123
+
+inst.prop // getter</code></pre>
+<h3 id="prop属性有对应的存值函数和取值函数，因此赋值和读取行为都被自定义了。"><a href="#prop属性有对应的存值函数和取值函数，因此赋值和读取行为都被自定义了。" class="headerlink" title="prop属性有对应的存值函数和取值函数，因此赋值和读取行为都被自定义了。"></a>prop属性有对应的存值函数和取值函数，因此赋值和读取行为都被自定义了。</h3><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
+<li>严格模式<ul>
+<li>类的内部，默认就是严格模式，所以不需要使用use strict指定运行模式</li>
+</ul>
+</li>
+<li>不存在提升<ul>
+<li>类不存在变量提升</li>
+</ul>
+</li>
+<li>name 属性<ul>
+<li>ES6 的类只是 ES5 的构造函数的一层包装，所以函数的许多特性都被Class继承，包括name属性</li>
+</ul>
+</li>
+<li>Generator 方法<ul>
+<li>如果某个方法之前加上星号（*），就表示该方法是一个 Generator 函数。<br>```<br>class Foo {<br>constructor(…args) {<br>this.args = args;<br>}</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><a href="">Symbol.iterator</a> {<br>for (let arg of this.args) {<br>  yield arg;<br>}<br>}<br>}</li>
+</ul>
+<p>for (let x of new Foo(‘hello’, ‘world’)) {<br>  console.log(x);<br>}<br>// hello<br>// world</p>
+<pre><code>* Foo类的Symbol.iterator方法前有一个星号，表示该方法是一个 Generator 函数。Symbol.iterator方法返回一个Foo类的默认遍历器，for...of循环会自动调用这个遍历器。
+5. this 的指向
+   类的方法内部如果含有this，它默认指向类的实例
+
+## 静态方法 
+   * 类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。(如果静态方法包含this关键字，这个this指的是类,父类的静态方法，可以被子类继承)
+   * 静态方法也是可以从super对象上调用的
+
+## 实例属性新写法
+
+
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title>hook的整理使用</title>
     <url>/2020/12/27/hook/</url>
     <content><![CDATA[<h3 id="hook简介"><a href="#hook简介" class="headerlink" title="hook简介"></a>hook简介</h3><font color=#FF0000 >
      Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
@@ -45,7 +189,104 @@ function Example() &#123;
   );
 &#125;</code></pre>
 <p><strong>&lt;font color==#00000 &gt;很多情况下，我们希望在组件加载和更新时执行同样的操作。从概念上说，我们希望它在每次渲染之后执行 —— 但 React 的 class 组件没有提供这样的方法。即使我们提取出一个方法，我们还是要在两个地方调用它。</font></strong></p>
-<h2 id="useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来"><a href="#useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来" class="headerlink" title="useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来"></a>useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来</h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p><font color=red>不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。遵守这条规则，你就能确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。<br><font/></p>
+<h2 id="useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来"><a href="#useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来" class="headerlink" title="useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来"></a>useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来</h2><p><font color=red>不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。遵守这条规则，你就能确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。<br><font/></p>
+<h4 id="useContext-接收一个context对象并返回当前的值"><a href="#useContext-接收一个context对象并返回当前的值" class="headerlink" title="useContext 接收一个context对象并返回当前的值"></a>useContext 接收一个context对象并返回当前的值</h4><pre><code> const value = useContext(MyContext);</code></pre>
+<h3 id="注意-他传入的值不是Consumer-消费者-也不是Provider生产者而是context对象本身"><a href="#注意-他传入的值不是Consumer-消费者-也不是Provider生产者而是context对象本身" class="headerlink" title="注意 : 他传入的值不是Consumer(消费者)也不是Provider生产者而是context对象本身"></a>注意 : <font color=blue>他传入的值不是Consumer(消费者)也不是Provider生产者而是context对象本身</font></h3><blockquote>
+<p>useContext(MyContext) 只是让你能够读取 context 的值以及订阅 context 的变化。你仍然需要在上层组件树中使用 &lt;MyContext.Provider&gt; 来为下层组件提供 context</p>
+</blockquote>
+<h2 id="额外的Hook"><a href="#额外的Hook" class="headerlink" title="额外的Hook"></a>额外的Hook</h2><ol>
+<li>useReducer<pre><code>const [state, dispatch] = useReducer(reducer, initialArg, init);</code></pre>
+<h3 id="它拥有三个值，第一个值是reducer函数-他会返回新的值来覆盖原来的值-第二个值是初始化的参数，第三个值是惰性初始化-需要将-init-函数作为-useReducer-的第三个参数传入，这样初始-state-将被设置为-init-initialArg"><a href="#它拥有三个值，第一个值是reducer函数-他会返回新的值来覆盖原来的值-第二个值是初始化的参数，第三个值是惰性初始化-需要将-init-函数作为-useReducer-的第三个参数传入，这样初始-state-将被设置为-init-initialArg" class="headerlink" title="它拥有三个值，第一个值是reducer函数,他会返回新的值来覆盖原来的值,第二个值是初始化的参数，第三个值是惰性初始化,需要将 init 函数作为 useReducer 的第三个参数传入，这样初始 state 将被设置为 init(initialArg)"></a>它拥有三个值，第一个值是reducer函数,他会返回新的值来覆盖原来的值,第二个值是初始化的参数，第三个值是惰性初始化,需要将 init 函数作为 useReducer 的第三个参数传入，这样初始 state 将被设置为 init(initialArg)</h3></li>
+</ol>
+<h2 id="注意-传入函数不要在生成dom的函数中-否则首次调用会执行两回"><a href="#注意-传入函数不要在生成dom的函数中-否则首次调用会执行两回" class="headerlink" title="注意 传入函数不要在生成dom的函数中,否则首次调用会执行两回"></a>注意 传入函数不要在生成dom的函数中,否则首次调用会执行两回</h2><pre><code>function init(initialCount) &#123;
+    return &#123; count: initialCount &#125;;
+&#125;
+function reducer(state, action) &#123;
+    switch (action.type) &#123;
+        case &#39;increment&#39;:
+          return &#123; count: state.count + 1 &#125;;
+        case &#39;decrement&#39;:
+          return &#123; count: state.count - 1 &#125;;
+        case &#39;reset&#39;:
+          return init(action.payload);
+        default:
+          throw new Error();
+    &#125;
+&#125;
+function Counter(&#123; initialCount &#125;) &#123;
+    const [state, dispatch] = useReducer(reducer, initialCount, init);
+    return (
+        &lt;div&gt;
+          Count: &#123;state.count&#125;
+          &lt;button
+            onClick=&#123;() =&gt; dispatch(&#123; type: &#39;reset&#39;, payload: initialCount &#125;)&#125;&gt;
+            Reset
+          &lt;/button&gt;
+          &lt;button onClick=&#123;() =&gt; dispatch(&#123; type: &#39;decrement&#39; &#125;)&#125;&gt;-&lt;/button&gt;
+          &lt;button onClick=&#123;() =&gt; dispatch(&#123; type: &#39;increment&#39; &#125;)&#125;&gt;+&lt;/button&gt;
+        &lt;div /&gt;
+    );
+&#125;</code></pre>
+<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><pre><code>const [count, setCount] = useState(1);
+    const [val, setVal] = useState(&#39;&#39;);
+    const [count, setCount] = useState(1);
+    const callback = useCallback(() =&gt; &#123;
+        console.log(count);
+    &#125;, [count]);
+    return &lt;div&gt;
+        &lt;h4&gt;&#123;count&#125;&lt;/h4&gt;
+        &lt;h4&gt;&#123;set.size&#125;&lt;/h4&gt;
+        &lt;div&gt;
+            &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;+&lt;/button&gt;
+            &lt;input value=&#123;val&#125; onChange=&#123;event =&gt; setVal(event.target.value)&#125;/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;;
+</code></pre>
+<ul>
+<li>在所依赖的count变化时会返回新的函数,count没有变化时不变<h4 id="会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数"><a href="#会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数" class="headerlink" title="会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数"></a>会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数</h4><h3 id="其可以应用在父组件向子组件传参-当父组件里面的值变化时，使子组件避免不必要的更新"><a href="#其可以应用在父组件向子组件传参-当父组件里面的值变化时，使子组件避免不必要的更新" class="headerlink" title="其可以应用在父组件向子组件传参,当父组件里面的值变化时，使子组件避免不必要的更新"></a>其可以应用在父组件向子组件传参,当父组件里面的值变化时，使子组件避免不必要的更新</h3></li>
+</ul>
+<h2 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h2><pre><code>export default function WithMemo() &#123;
+    const [count, setCount] = useState(1);
+    const [val, setValue] = useState(&#39;&#39;);
+    const expensive = useMemo(() =&gt; &#123;
+        console.log(&#39;compute&#39;);
+        let sum = 0;
+        for (let i = 0; i &lt; count * 100; i++) &#123;
+            sum += i;
+        &#125;
+        return sum;
+    &#125;, [count]);
+
+    return &lt;div&gt;
+        &lt;h4&gt;&#123;count&#125;-&#123;expensive&#125;&lt;/h4&gt;
+        &#123;val&#125;
+        &lt;div&gt;
+            &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;+c1&lt;/button&gt;
+            &lt;input value=&#123;val&#125; onChange=&#123;event =&gt; setValue(event.target.value)&#125;/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;;</code></pre>
+<ul>
+<li> 同上,会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的变量<h3 id="使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。"><a href="#使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。" class="headerlink" title="使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。"></a>使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。</h3></li>
+</ul>
+<h3 id="useRef-返回一个可变的-ref-对象，其-current-属性被初始化为传入的参数。返回的-ref-对象在组件的整个生命周期内保持不变。"><a href="#useRef-返回一个可变的-ref-对象，其-current-属性被初始化为传入的参数。返回的-ref-对象在组件的整个生命周期内保持不变。" class="headerlink" title="useRef  返回一个可变的 ref 对象，其 .current 属性被初始化为传入的参数。返回的 ref 对象在组件的整个生命周期内保持不变。"></a>useRef  返回一个可变的 ref 对象，其 .current 属性被初始化为传入的参数。返回的 ref 对象在组件的整个生命周期内保持不变。</h3><pre><code>const refContainer = useRef(null);</code></pre>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre><code>function TextInputWithFocusButton() &#123;
+  const inputEl = useRef(null);
+  const onButtonClick = () =&gt; &#123;
+    // `current` 指向已挂载到 DOM 上的文本输入元素
+    inputEl.current.focus();
+  &#125;;
+  return (
+    &lt;div&gt;
+      &lt;input ref=&#123;inputEl&#125; type=&quot;text&quot;/&gt;
+      &lt;button onClick=&#123;onButtonClick&#125;&gt;Focus the input&lt;/button&gt;
+    &lt;/div&gt;
+  );
+&#125;</code></pre>
+<h3 id="还有很多hook方法-例如"><a href="#还有很多hook方法-例如" class="headerlink" title="还有很多hook方法 例如"></a>还有很多hook方法 例如</h3><ol>
+<li>useImperativeHandle</li>
+<li>useLayoutEffect</li>
+<li>useDebugValue</li>
+</ol>
 ]]></content>
   </entry>
 </search>
