@@ -114,11 +114,15 @@ inst.prop // getter</code></pre>
 </ul>
 </li>
 <li>不存在提升<ul>
-<li>类不存在变量提升</li>
+<li>类不存在变量提升<pre><code>new Foo(); // ReferenceError
+class Foo &#123;&#125;</code></pre>
+</li>
 </ul>
 </li>
 <li>name 属性<ul>
-<li>ES6 的类只是 ES5 的构造函数的一层包装，所以函数的许多特性都被Class继承，包括name属性</li>
+<li>ES6 的类只是 ES5 的构造函数的一层包装，所以函数的许多特性都被Class继承，包括name属性<pre><code>class Point&#123;&#125;
+console.log(Point.name) // &#39;Point&#39;</code></pre>
+name属性总是返回紧跟在class关键字后面的类名</li>
 </ul>
 </li>
 <li>Generator 方法<ul>
@@ -140,9 +144,36 @@ inst.prop // getter</code></pre>
 
 ## 实例属性新写法
 
+​     实例属性除了定义在constructor()方法里面的this上面也可以定义在类的最顶层。
 
-</code></pre>
+
+
+```javascript
+class IncreasingCounter&#123;
+  constructor()&#123;
+     this._count = 0
+  &#125;
+  get value()&#123;
+      console.log(&#39;Getting the current value!&#39;);
+      return this._count;
+  &#125;
+    increment()&#123;
+        this,_count++
+    &#125;
+&#125;</code></pre>
 ]]></content>
+  </entry>
+  <entry>
+    <title>TypeScript</title>
+    <url>/2020/12/30/TypeScript/</url>
+    <content><![CDATA[<h3 id="1-基础类型"><a href="#1-基础类型" class="headerlink" title="1.基础类型"></a>1.基础类型</h3><p>为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。TypeScript支持与javaScript几乎相同的数据类型，此外还提供了实用的的枚举类型方便我们使用。</p>
+<h4 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h4><p>k</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>TypeScript</title>
+    <url>/2021/01/04/Object/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>hook的整理使用</title>
@@ -287,6 +318,76 @@ function Counter(&#123; initialCount &#125;) &#123;
 <li>useLayoutEffect</li>
 <li>useDebugValue</li>
 </ol>
+<p>下次再见</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>JavaScript的严格模式</title>
+    <url>/2020/12/30/%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h4 id="声明严格模式"><a href="#声明严格模式" class="headerlink" title="声明严格模式"></a>声明严格模式</h4><p>通过在脚本或函数的头部添加use strict,表达式来声明。</p>
+<pre><code class="js">&#39;use strict&#39;
+x = 3.14;   // 报错(x 未定义)</code></pre>
+<p>注:在函数内部声明的变量是局部作用域(只在函数内使用严格模式)</p>
+<pre><code class="js">function myFunction()&#123;
+    &#39;use strict&#39;
+    y = 3.15 //报错(未定义)
+&#125;</code></pre>
+<h4 id="严格模式限制"><a href="#严格模式限制" class="headerlink" title="严格模式限制"></a>严格模式限制</h4><h5 id="1-不允许使用未声明的变量："><a href="#1-不允许使用未声明的变量：" class="headerlink" title="1.不允许使用未声明的变量："></a>1.不允许使用未声明的变量：</h5><pre><code class="js">&#39;use strict&#39;;
+x = 3.14 : // 报错未定义</code></pre>
+<h5 id="2-不允许删除变量、对象和函数。"><a href="#2-不允许删除变量、对象和函数。" class="headerlink" title="2.不允许删除变量、对象和函数。"></a>2.不允许删除变量、对象和函数。</h5><pre><code class="js">&#39;use strict&#39;;
+
+var x = 3.15
+
+delect x, // 错误
+
+function x(p1, p2) &#123;&#125;;
+
+delete x;                // 报错</code></pre>
+<h5 id="3-不允许变量重名"><a href="#3-不允许变量重名" class="headerlink" title="3.不允许变量重名"></a>3.不允许变量重名</h5><pre><code class="js">&#39;use strict&#39;
+function x(p1,p1)&#123;&#125;; // 报错</code></pre>
+<h5 id="4-不允许使用8进制"><a href="#4-不允许使用8进制" class="headerlink" title="4.不允许使用8进制"></a>4.不允许使用8进制</h5><pre><code class="js">&#39;use strict&#39;
+var x = 010; // 报错</code></pre>
+<h5 id="5-不允许使用转义字符"><a href="#5-不允许使用转义字符" class="headerlink" title="5.不允许使用转义字符"></a>5.不允许使用转义字符</h5><pre><code class="js">&#39;use strict&#39;
+var x = \010; //报错</code></pre>
+<h5 id="6-不允许对只读属性赋值；"><a href="#6-不允许对只读属性赋值；" class="headerlink" title="6.不允许对只读属性赋值；"></a>6.不允许对只读属性赋值；</h5><pre><code class="js">&#39;use strict&#39;;
+var obj = &#123;&#125;;
+Object.defineProperty(obj,&#39;x&#39;,&#123;value:0,writable:false&#125;)
+obj.x = 3.14 //报错</code></pre>
+<h5 id="7-不允许删除一个不允许删除的属性"><a href="#7-不允许删除一个不允许删除的属性" class="headerlink" title="7.不允许删除一个不允许删除的属性"></a>7.不允许删除一个不允许删除的属性</h5><pre><code class="js">&#39;use strict&#39;
+delete Object.proptotype //报错</code></pre>
+<h5 id="8-变量名不能使用-“eval”-和-“arguments”字符串；"><a href="#8-变量名不能使用-“eval”-和-“arguments”字符串；" class="headerlink" title="8.变量名不能使用  “eval”  和 “arguments”字符串；"></a>8.变量名不能使用  “eval”  和 “arguments”字符串；</h5><pre><code class="js">&#39;use strict&#39;
+var eval = 3.15; //报错
+var arguments = 3.15 //报错</code></pre>
+<h5 id="9-处于安全原因-作用域eval-创建的变量不能被调用"><a href="#9-处于安全原因-作用域eval-创建的变量不能被调用" class="headerlink" title="9.处于安全原因,作用域eval()创建的变量不能被调用"></a>9.处于安全原因,作用域eval()创建的变量不能被调用</h5><pre><code class="js">&#39;use strict&#39;
+eval (&#39;var x = 3&#39;);
+conaole.log(x) // 报错</code></pre>
+<h5 id="10-禁止this关键字指向全局对象。"><a href="#10-禁止this关键字指向全局对象。" class="headerlink" title="10.禁止this关键字指向全局对象。"></a>10.禁止this关键字指向全局对象。</h5><pre><code class="js">//非严格模式
+function f()&#123;
+    return !this;
+&#125; 
+// 返回false,默认指向全局对象，！this就是false
+
+&#39;use strict&#39;
+function f()&#123;
+    return this
+&#125;
+// 严格模式下，this的值默认为undefined ,!this就是true</code></pre>
+<h5 id="11-严格模式保留字"><a href="#11-严格模式保留字" class="headerlink" title="11.严格模式保留字"></a>11.严格模式保留字</h5><ul>
+<li>implements</li>
+<li>interface</li>
+<li>let</li>
+<li>package</li>
+<li>private</li>
+<li>protected</li>
+<li>public</li>
+<li>static</li>
+<li>yield</li>
+</ul>
+<pre><code class="js">&quot;use strict&quot;;
+var public = 1500;      // 报错</code></pre>
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
 </search>
