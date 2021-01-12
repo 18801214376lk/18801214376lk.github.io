@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
+  <title>同源及跨域 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <meta name="description" content="同源及跨域 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="第一篇博客好吃的">
 <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3014093926,41837070&amp;fm=26&amp;gp=0.jpg" />
@@ -287,14 +287,54 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
-    <div class="pjax" style="width:100%;height:100%;">
-        <p style="text-align:center;font-size:40px;font-weight:600;padding:0;margin:0;">奋斗努力</p>
-        <img style="width:100%;height:100%;" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2738120004,1015457826&fm=26&gp=0.jpg"/>
-        <!-- <article class="index">
-            <div class="toc-ref">
+<div id="post">
+    <div class="pjax">
+        <article id="post-同源及跨域" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li></ol></li></ol>
+        <h1 class="article-title">同源及跨域</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2021-01-12 09:05:33'>2021-01-11 15:23</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                Comment:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5"><span class="toc-text">同源策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F"><span class="toc-text">跨域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%90%8C%E6%BA%90"><span class="toc-text">解决同源</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87-%E5%BC%95%E7%94%A8CSS-%E5%92%8C-JS%E6%96%87%E4%BB%B6%E6%97%B6-%E5%8F%AF%E6%97%A0%E8%A7%86%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5"><span class="toc-text">加载图片 引用CSS 和 JS文件时 可无视同源策略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-JSONP"><span class="toc-text">1.  JSONP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-jquery-%E8%87%AA%E5%B8%A6jsonp"><span class="toc-text">2. jquery 自带jsonp</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -307,10 +347,33 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2>
-        </article>
-         -->
-        <!-- 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><ul>
+<li>ajax 请求时，浏览器要求当前网页和server必须同源（安全）</li>
+<li>同源：协议，域名，端口，三者必须一致</li>
+</ul>
+<blockquote>
+<p><strong>同源策略限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。</strong></p>
+</blockquote>
+<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>跨域，指的是从一个域名去请求另外一个域名的资源。即跨域名请求！跨域时，浏览器不能执行其他域名网站的脚本，是由浏览器的同源策略造成的，是浏览器施加的安全限制。</p>
+<p>跨域的严格一点来说就是只要协议，域名，端口有任何一个的不同，就被当作是跨域。</p>
+<h3 id="解决同源"><a href="#解决同源" class="headerlink" title="解决同源"></a>解决同源</h3><h5 id="加载图片-引用CSS-和-JS文件时-可无视同源策略"><a href="#加载图片-引用CSS-和-JS文件时-可无视同源策略" class="headerlink" title="加载图片 引用CSS 和 JS文件时 可无视同源策略"></a>加载图片 引用CSS 和 JS文件时 可无视同源策略</h5><ul>
+<li><code>&lt;img src=&quot;跨域的图片地址&quot; /&gt;</code>  <strong>可用于统计打点，可使用第三方统计服务</strong></li>
+<li><code>&lt;link href=&quot;跨域的css地址&quot; /&gt;</code> <strong>可使用CDN,CDN一般都是外域</strong></li>
+<li><code>&lt;script src=&quot;跨域的js地址&quot;&gt;&lt;/script&gt;</code> <strong>可实现JSONP</strong></li>
+</ul>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><h4 id="1-JSONP"><a href="#1-JSONP" class="headerlink" title="1.  JSONP"></a>1.  JSONP</h4><h4 id="2-jquery-自带jsonp"><a href="#2-jquery-自带jsonp" class="headerlink" title="2. jquery 自带jsonp"></a>2. jquery 自带jsonp</h4>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -331,7 +394,14 @@
     })
 </script>
 
- -->
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -340,11 +410,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
