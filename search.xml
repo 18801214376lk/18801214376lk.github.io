@@ -1,162 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>TypeScript</title>
-    <url>/2021/01/04/Object/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>TypeScript</title>
-    <url>/2020/12/30/TypeScript/</url>
-    <content><![CDATA[<h3 id="1-基础类型"><a href="#1-基础类型" class="headerlink" title="1.基础类型"></a>1.基础类型</h3><p>为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。TypeScript支持与javaScript几乎相同的数据类型，此外还提供了实用的的枚举类型方便我们使用。</p>
-<h4 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h4><p>k</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>hook的整理使用</title>
-    <url>/2020/12/27/hook/</url>
-    <content><![CDATA[<h3 id="hook简介"><a href="#hook简介" class="headerlink" title="hook简介"></a>hook简介</h3><font color=#FF0000 >
-     Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
-</font>
-
-<h5 id="useState使用"><a href="#useState使用" class="headerlink" title="useState使用"></a>useState使用</h5><pre><code>import React, &#123; useState &#125; from &#39;react&#39;;
-function Example() &#123;
-  // 声明一个新的叫做 “count” 的 state 变量
-  const [count, setCount] = useState(0);
-  return (
-    &lt;div&gt;
-      &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;
-      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;
-        Click me
-      &lt;/button&gt;
-    &lt;/div&gt;
-  );
+    <title>JavaScript的严格模式</title>
+    <url>/2020/12/30/%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h4 id="声明严格模式"><a href="#声明严格模式" class="headerlink" title="声明严格模式"></a>声明严格模式</h4><p>通过在脚本或函数的头部添加use strict,表达式来声明。</p>
+<pre><code class="js">&#39;use strict&#39;
+x = 3.14;   // 报错(x 未定义)</code></pre>
+<p>注:在函数内部声明的变量是局部作用域(只在函数内使用严格模式)</p>
+<pre><code class="js">function myFunction()&#123;
+    &#39;use strict&#39;
+    y = 3.15 //报错(未定义)
 &#125;</code></pre>
-<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><font color=#ff0000>
-可以实现在函数组件中使用 state count是值,setCount是修改的方法
-</font>
+<h4 id="严格模式限制"><a href="#严格模式限制" class="headerlink" title="严格模式限制"></a>严格模式限制</h4><h5 id="1-不允许使用未声明的变量："><a href="#1-不允许使用未声明的变量：" class="headerlink" title="1.不允许使用未声明的变量："></a>1.不允许使用未声明的变量：</h5><pre><code class="js">&#39;use strict&#39;;
+x = 3.14 : // 报错未定义</code></pre>
+<h5 id="2-不允许删除变量、对象和函数。"><a href="#2-不允许删除变量、对象和函数。" class="headerlink" title="2.不允许删除变量、对象和函数。"></a>2.不允许删除变量、对象和函数。</h5><pre><code class="js">&#39;use strict&#39;;
 
-<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2><pre><code>import React, &#123; useState, useEffect &#125; from &#39;react&#39;;
+var x = 3.15
 
-function Example() &#123;
-  const [count, setCount] = useState(0);
+delect x, // 错误
 
-  // Similar to componentDidMount and componentDidUpdate:
-  useEffect(() =&gt; &#123;
-    // Update the document title using the browser API
-    document.title = `You clicked $&#123;count&#125; times`;
-  &#125;);
+function x(p1, p2) &#123;&#125;;
 
-  return (
-    &lt;div&gt;
-      &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;
-      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;
-        Click me
-      &lt;/button&gt;
-    &lt;/div&gt;
-  );
-&#125;</code></pre>
-<p><strong>&lt;font color==#00000 &gt;很多情况下，我们希望在组件加载和更新时执行同样的操作。从概念上说，我们希望它在每次渲染之后执行 —— 但 React 的 class 组件没有提供这样的方法。即使我们提取出一个方法，我们还是要在两个地方调用它。</font></strong></p>
-<h2 id="useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来"><a href="#useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来" class="headerlink" title="useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来"></a>useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来</h2><p><font color=red>不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。遵守这条规则，你就能确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。<br><font/></p>
-<h4 id="useContext-接收一个context对象并返回当前的值"><a href="#useContext-接收一个context对象并返回当前的值" class="headerlink" title="useContext 接收一个context对象并返回当前的值"></a>useContext 接收一个context对象并返回当前的值</h4><pre><code> const value = useContext(MyContext);</code></pre>
-<h3 id="注意-他传入的值不是Consumer-消费者-也不是Provider生产者而是context对象本身"><a href="#注意-他传入的值不是Consumer-消费者-也不是Provider生产者而是context对象本身" class="headerlink" title="注意 : 他传入的值不是Consumer(消费者)也不是Provider生产者而是context对象本身"></a>注意 : <font color=blue>他传入的值不是Consumer(消费者)也不是Provider生产者而是context对象本身</font></h3><blockquote>
-<p>useContext(MyContext) 只是让你能够读取 context 的值以及订阅 context 的变化。你仍然需要在上层组件树中使用 &lt;MyContext.Provider&gt; 来为下层组件提供 context</p>
-</blockquote>
-<h2 id="额外的Hook"><a href="#额外的Hook" class="headerlink" title="额外的Hook"></a>额外的Hook</h2><ol>
-<li>useReducer<pre><code>const [state, dispatch] = useReducer(reducer, initialArg, init);</code></pre>
-<h3 id="它拥有三个值，第一个值是reducer函数-他会返回新的值来覆盖原来的值-第二个值是初始化的参数，第三个值是惰性初始化-需要将-init-函数作为-useReducer-的第三个参数传入，这样初始-state-将被设置为-init-initialArg"><a href="#它拥有三个值，第一个值是reducer函数-他会返回新的值来覆盖原来的值-第二个值是初始化的参数，第三个值是惰性初始化-需要将-init-函数作为-useReducer-的第三个参数传入，这样初始-state-将被设置为-init-initialArg" class="headerlink" title="它拥有三个值，第一个值是reducer函数,他会返回新的值来覆盖原来的值,第二个值是初始化的参数，第三个值是惰性初始化,需要将 init 函数作为 useReducer 的第三个参数传入，这样初始 state 将被设置为 init(initialArg)"></a>它拥有三个值，第一个值是reducer函数,他会返回新的值来覆盖原来的值,第二个值是初始化的参数，第三个值是惰性初始化,需要将 init 函数作为 useReducer 的第三个参数传入，这样初始 state 将被设置为 init(initialArg)</h3></li>
-</ol>
-<h2 id="注意-传入函数不要在生成dom的函数中-否则首次调用会执行两回"><a href="#注意-传入函数不要在生成dom的函数中-否则首次调用会执行两回" class="headerlink" title="注意 传入函数不要在生成dom的函数中,否则首次调用会执行两回"></a>注意 传入函数不要在生成dom的函数中,否则首次调用会执行两回</h2><pre><code>function init(initialCount) &#123;
-    return &#123; count: initialCount &#125;;
+delete x;                // 报错</code></pre>
+<h5 id="3-不允许变量重名"><a href="#3-不允许变量重名" class="headerlink" title="3.不允许变量重名"></a>3.不允许变量重名</h5><pre><code class="js">&#39;use strict&#39;
+function x(p1,p1)&#123;&#125;; // 报错</code></pre>
+<h5 id="4-不允许使用8进制"><a href="#4-不允许使用8进制" class="headerlink" title="4.不允许使用8进制"></a>4.不允许使用8进制</h5><pre><code class="js">&#39;use strict&#39;
+var x = 010; // 报错</code></pre>
+<h5 id="5-不允许使用转义字符"><a href="#5-不允许使用转义字符" class="headerlink" title="5.不允许使用转义字符"></a>5.不允许使用转义字符</h5><pre><code class="js">&#39;use strict&#39;
+var x = \010; //报错</code></pre>
+<h5 id="6-不允许对只读属性赋值；"><a href="#6-不允许对只读属性赋值；" class="headerlink" title="6.不允许对只读属性赋值；"></a>6.不允许对只读属性赋值；</h5><pre><code class="js">&#39;use strict&#39;;
+var obj = &#123;&#125;;
+Object.defineProperty(obj,&#39;x&#39;,&#123;value:0,writable:false&#125;)
+obj.x = 3.14 //报错</code></pre>
+<h5 id="7-不允许删除一个不允许删除的属性"><a href="#7-不允许删除一个不允许删除的属性" class="headerlink" title="7.不允许删除一个不允许删除的属性"></a>7.不允许删除一个不允许删除的属性</h5><pre><code class="js">&#39;use strict&#39;
+delete Object.proptotype //报错</code></pre>
+<h5 id="8-变量名不能使用-“eval”-和-“arguments”字符串；"><a href="#8-变量名不能使用-“eval”-和-“arguments”字符串；" class="headerlink" title="8.变量名不能使用  “eval”  和 “arguments”字符串；"></a>8.变量名不能使用  “eval”  和 “arguments”字符串；</h5><pre><code class="js">&#39;use strict&#39;
+var eval = 3.15; //报错
+var arguments = 3.15 //报错</code></pre>
+<h5 id="9-处于安全原因-作用域eval-创建的变量不能被调用"><a href="#9-处于安全原因-作用域eval-创建的变量不能被调用" class="headerlink" title="9.处于安全原因,作用域eval()创建的变量不能被调用"></a>9.处于安全原因,作用域eval()创建的变量不能被调用</h5><pre><code class="js">&#39;use strict&#39;
+eval (&#39;var x = 3&#39;);
+conaole.log(x) // 报错</code></pre>
+<h5 id="10-禁止this关键字指向全局对象。"><a href="#10-禁止this关键字指向全局对象。" class="headerlink" title="10.禁止this关键字指向全局对象。"></a>10.禁止this关键字指向全局对象。</h5><pre><code class="js">//非严格模式
+function f()&#123;
+    return !this;
+&#125; 
+// 返回false,默认指向全局对象，！this就是false
+
+&#39;use strict&#39;
+function f()&#123;
+    return this
 &#125;
-function reducer(state, action) &#123;
-    switch (action.type) &#123;
-        case &#39;increment&#39;:
-          return &#123; count: state.count + 1 &#125;;
-        case &#39;decrement&#39;:
-          return &#123; count: state.count - 1 &#125;;
-        case &#39;reset&#39;:
-          return init(action.payload);
-        default:
-          throw new Error();
-    &#125;
-&#125;
-function Counter(&#123; initialCount &#125;) &#123;
-    const [state, dispatch] = useReducer(reducer, initialCount, init);
-    return (
-        &lt;div&gt;
-          Count: &#123;state.count&#125;
-          &lt;button
-            onClick=&#123;() =&gt; dispatch(&#123; type: &#39;reset&#39;, payload: initialCount &#125;)&#125;&gt;
-            Reset
-          &lt;/button&gt;
-          &lt;button onClick=&#123;() =&gt; dispatch(&#123; type: &#39;decrement&#39; &#125;)&#125;&gt;-&lt;/button&gt;
-          &lt;button onClick=&#123;() =&gt; dispatch(&#123; type: &#39;increment&#39; &#125;)&#125;&gt;+&lt;/button&gt;
-        &lt;div /&gt;
-    );
-&#125;</code></pre>
-<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><pre><code>const [count, setCount] = useState(1);
-    const [val, setVal] = useState(&#39;&#39;);
-    const [count, setCount] = useState(1);
-    const callback = useCallback(() =&gt; &#123;
-        console.log(count);
-    &#125;, [count]);
-    return &lt;div&gt;
-        &lt;h4&gt;&#123;count&#125;&lt;/h4&gt;
-        &lt;h4&gt;&#123;set.size&#125;&lt;/h4&gt;
-        &lt;div&gt;
-            &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;+&lt;/button&gt;
-            &lt;input value=&#123;val&#125; onChange=&#123;event =&gt; setVal(event.target.value)&#125;/&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;;
-</code></pre>
-<ul>
-<li>在所依赖的count变化时会返回新的函数,count没有变化时不变<h4 id="会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数"><a href="#会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数" class="headerlink" title="会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数"></a>会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数</h4><h3 id="其可以应用在父组件向子组件传参-当父组件里面的值变化时，使子组件避免不必要的更新"><a href="#其可以应用在父组件向子组件传参-当父组件里面的值变化时，使子组件避免不必要的更新" class="headerlink" title="其可以应用在父组件向子组件传参,当父组件里面的值变化时，使子组件避免不必要的更新"></a>其可以应用在父组件向子组件传参,当父组件里面的值变化时，使子组件避免不必要的更新</h3></li>
+// 严格模式下，this的值默认为undefined ,!this就是true</code></pre>
+<h5 id="11-严格模式保留字"><a href="#11-严格模式保留字" class="headerlink" title="11.严格模式保留字"></a>11.严格模式保留字</h5><ul>
+<li>implements</li>
+<li>interface</li>
+<li>let</li>
+<li>package</li>
+<li>private</li>
+<li>protected</li>
+<li>public</li>
+<li>static</li>
+<li>yield</li>
 </ul>
-<h2 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h2><pre><code>export default function WithMemo() &#123;
-    const [count, setCount] = useState(1);
-    const [val, setValue] = useState(&#39;&#39;);
-    const expensive = useMemo(() =&gt; &#123;
-        console.log(&#39;compute&#39;);
-        let sum = 0;
-        for (let i = 0; i &lt; count * 100; i++) &#123;
-            sum += i;
-        &#125;
-        return sum;
-    &#125;, [count]);
-
-    return &lt;div&gt;
-        &lt;h4&gt;&#123;count&#125;-&#123;expensive&#125;&lt;/h4&gt;
-        &#123;val&#125;
-        &lt;div&gt;
-            &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;+c1&lt;/button&gt;
-            &lt;input value=&#123;val&#125; onChange=&#123;event =&gt; setValue(event.target.value)&#125;/&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;;</code></pre>
-<ul>
-<li> 同上,会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的变量<h3 id="使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。"><a href="#使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。" class="headerlink" title="使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。"></a>使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。</h3></li>
-</ul>
-<h3 id="useRef-返回一个可变的-ref-对象，其-current-属性被初始化为传入的参数。返回的-ref-对象在组件的整个生命周期内保持不变。"><a href="#useRef-返回一个可变的-ref-对象，其-current-属性被初始化为传入的参数。返回的-ref-对象在组件的整个生命周期内保持不变。" class="headerlink" title="useRef  返回一个可变的 ref 对象，其 .current 属性被初始化为传入的参数。返回的 ref 对象在组件的整个生命周期内保持不变。"></a>useRef  返回一个可变的 ref 对象，其 .current 属性被初始化为传入的参数。返回的 ref 对象在组件的整个生命周期内保持不变。</h3><pre><code>const refContainer = useRef(null);</code></pre>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre><code>function TextInputWithFocusButton() &#123;
-  const inputEl = useRef(null);
-  const onButtonClick = () =&gt; &#123;
-    // `current` 指向已挂载到 DOM 上的文本输入元素
-    inputEl.current.focus();
-  &#125;;
-  return (
-    &lt;div&gt;
-      &lt;input ref=&#123;inputEl&#125; type=&quot;text&quot;/&gt;
-      &lt;button onClick=&#123;onButtonClick&#125;&gt;Focus the input&lt;/button&gt;
-    &lt;/div&gt;
-  );
-&#125;</code></pre>
-<h3 id="还有很多hook方法-例如"><a href="#还有很多hook方法-例如" class="headerlink" title="还有很多hook方法 例如"></a>还有很多hook方法 例如</h3><ol>
-<li>useImperativeHandle</li>
-<li>useLayoutEffect</li>
-<li>useDebugValue</li>
-</ol>
-<p>下次再见</p>
+<pre><code class="js">&quot;use strict&quot;;
+var public = 1500;      // 报错</code></pre>
 ]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>class的总结</title>
@@ -322,75 +233,6 @@ class IncreasingCounter&#123;
 ]]></content>
   </entry>
   <entry>
-    <title>JavaScript的严格模式</title>
-    <url>/2020/12/30/%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h4 id="声明严格模式"><a href="#声明严格模式" class="headerlink" title="声明严格模式"></a>声明严格模式</h4><p>通过在脚本或函数的头部添加use strict,表达式来声明。</p>
-<pre><code class="js">&#39;use strict&#39;
-x = 3.14;   // 报错(x 未定义)</code></pre>
-<p>注:在函数内部声明的变量是局部作用域(只在函数内使用严格模式)</p>
-<pre><code class="js">function myFunction()&#123;
-    &#39;use strict&#39;
-    y = 3.15 //报错(未定义)
-&#125;</code></pre>
-<h4 id="严格模式限制"><a href="#严格模式限制" class="headerlink" title="严格模式限制"></a>严格模式限制</h4><h5 id="1-不允许使用未声明的变量："><a href="#1-不允许使用未声明的变量：" class="headerlink" title="1.不允许使用未声明的变量："></a>1.不允许使用未声明的变量：</h5><pre><code class="js">&#39;use strict&#39;;
-x = 3.14 : // 报错未定义</code></pre>
-<h5 id="2-不允许删除变量、对象和函数。"><a href="#2-不允许删除变量、对象和函数。" class="headerlink" title="2.不允许删除变量、对象和函数。"></a>2.不允许删除变量、对象和函数。</h5><pre><code class="js">&#39;use strict&#39;;
-
-var x = 3.15
-
-delect x, // 错误
-
-function x(p1, p2) &#123;&#125;;
-
-delete x;                // 报错</code></pre>
-<h5 id="3-不允许变量重名"><a href="#3-不允许变量重名" class="headerlink" title="3.不允许变量重名"></a>3.不允许变量重名</h5><pre><code class="js">&#39;use strict&#39;
-function x(p1,p1)&#123;&#125;; // 报错</code></pre>
-<h5 id="4-不允许使用8进制"><a href="#4-不允许使用8进制" class="headerlink" title="4.不允许使用8进制"></a>4.不允许使用8进制</h5><pre><code class="js">&#39;use strict&#39;
-var x = 010; // 报错</code></pre>
-<h5 id="5-不允许使用转义字符"><a href="#5-不允许使用转义字符" class="headerlink" title="5.不允许使用转义字符"></a>5.不允许使用转义字符</h5><pre><code class="js">&#39;use strict&#39;
-var x = \010; //报错</code></pre>
-<h5 id="6-不允许对只读属性赋值；"><a href="#6-不允许对只读属性赋值；" class="headerlink" title="6.不允许对只读属性赋值；"></a>6.不允许对只读属性赋值；</h5><pre><code class="js">&#39;use strict&#39;;
-var obj = &#123;&#125;;
-Object.defineProperty(obj,&#39;x&#39;,&#123;value:0,writable:false&#125;)
-obj.x = 3.14 //报错</code></pre>
-<h5 id="7-不允许删除一个不允许删除的属性"><a href="#7-不允许删除一个不允许删除的属性" class="headerlink" title="7.不允许删除一个不允许删除的属性"></a>7.不允许删除一个不允许删除的属性</h5><pre><code class="js">&#39;use strict&#39;
-delete Object.proptotype //报错</code></pre>
-<h5 id="8-变量名不能使用-“eval”-和-“arguments”字符串；"><a href="#8-变量名不能使用-“eval”-和-“arguments”字符串；" class="headerlink" title="8.变量名不能使用  “eval”  和 “arguments”字符串；"></a>8.变量名不能使用  “eval”  和 “arguments”字符串；</h5><pre><code class="js">&#39;use strict&#39;
-var eval = 3.15; //报错
-var arguments = 3.15 //报错</code></pre>
-<h5 id="9-处于安全原因-作用域eval-创建的变量不能被调用"><a href="#9-处于安全原因-作用域eval-创建的变量不能被调用" class="headerlink" title="9.处于安全原因,作用域eval()创建的变量不能被调用"></a>9.处于安全原因,作用域eval()创建的变量不能被调用</h5><pre><code class="js">&#39;use strict&#39;
-eval (&#39;var x = 3&#39;);
-conaole.log(x) // 报错</code></pre>
-<h5 id="10-禁止this关键字指向全局对象。"><a href="#10-禁止this关键字指向全局对象。" class="headerlink" title="10.禁止this关键字指向全局对象。"></a>10.禁止this关键字指向全局对象。</h5><pre><code class="js">//非严格模式
-function f()&#123;
-    return !this;
-&#125; 
-// 返回false,默认指向全局对象，！this就是false
-
-&#39;use strict&#39;
-function f()&#123;
-    return this
-&#125;
-// 严格模式下，this的值默认为undefined ,!this就是true</code></pre>
-<h5 id="11-严格模式保留字"><a href="#11-严格模式保留字" class="headerlink" title="11.严格模式保留字"></a>11.严格模式保留字</h5><ul>
-<li>implements</li>
-<li>interface</li>
-<li>let</li>
-<li>package</li>
-<li>private</li>
-<li>protected</li>
-<li>public</li>
-<li>static</li>
-<li>yield</li>
-</ul>
-<pre><code class="js">&quot;use strict&quot;;
-var public = 1500;      // 报错</code></pre>
-]]></content>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>同源及跨域</title>
     <url>/2021/01/11/%E5%90%8C%E6%BA%90%E5%8F%8A%E8%B7%A8%E5%9F%9F/</url>
     <content><![CDATA[<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><ul>
@@ -408,5 +250,163 @@ var public = 1500;      // 报错</code></pre>
 <li><code>&lt;script src=&quot;跨域的js地址&quot;&gt;&lt;/script&gt;</code> <strong>可实现JSONP</strong></li>
 </ul>
 <h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><h4 id="1-JSONP"><a href="#1-JSONP" class="headerlink" title="1.  JSONP"></a>1.  JSONP</h4><h4 id="2-jquery-自带jsonp"><a href="#2-jquery-自带jsonp" class="headerlink" title="2. jquery 自带jsonp"></a>2. jquery 自带jsonp</h4>]]></content>
+  </entry>
+  <entry>
+    <title>hook的整理使用</title>
+    <url>/2020/12/27/hook/</url>
+    <content><![CDATA[<h3 id="hook简介"><a href="#hook简介" class="headerlink" title="hook简介"></a>hook简介</h3><font color=#FF0000 >
+     Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
+</font>
+
+<h5 id="useState使用"><a href="#useState使用" class="headerlink" title="useState使用"></a>useState使用</h5><pre><code>import React, &#123; useState &#125; from &#39;react&#39;;
+function Example() &#123;
+  // 声明一个新的叫做 “count” 的 state 变量
+  const [count, setCount] = useState(0);
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;
+      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+&#125;</code></pre>
+<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><font color=#ff0000>
+可以实现在函数组件中使用 state count是值,setCount是修改的方法
+</font>
+
+<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2><pre><code>import React, &#123; useState, useEffect &#125; from &#39;react&#39;;
+
+function Example() &#123;
+  const [count, setCount] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() =&gt; &#123;
+    // Update the document title using the browser API
+    document.title = `You clicked $&#123;count&#125; times`;
+  &#125;);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;
+      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+&#125;</code></pre>
+<p><strong>&lt;font color==#00000 &gt;很多情况下，我们希望在组件加载和更新时执行同样的操作。从概念上说，我们希望它在每次渲染之后执行 —— 但 React 的 class 组件没有提供这样的方法。即使我们提取出一个方法，我们还是要在两个地方调用它。</font></strong></p>
+<h2 id="useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来"><a href="#useEffect是在加载前或更新时都会使用-替代了componentDidMount-和componentDidUpdate-集合起来" class="headerlink" title="useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来"></a>useEffect是在加载前或更新时都会使用 替代了componentDidMount()和componentDidUpdate() 集合起来</h2><p><font color=red>不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。遵守这条规则，你就能确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。<br><font/></p>
+<h4 id="useContext-接收一个context对象并返回当前的值"><a href="#useContext-接收一个context对象并返回当前的值" class="headerlink" title="useContext 接收一个context对象并返回当前的值"></a>useContext 接收一个context对象并返回当前的值</h4><pre><code> const value = useContext(MyContext);</code></pre>
+<h3 id="注意-他传入的值不是Consumer-消费者-也不是Provider生产者而是context对象本身"><a href="#注意-他传入的值不是Consumer-消费者-也不是Provider生产者而是context对象本身" class="headerlink" title="注意 : 他传入的值不是Consumer(消费者)也不是Provider生产者而是context对象本身"></a>注意 : <font color=blue>他传入的值不是Consumer(消费者)也不是Provider生产者而是context对象本身</font></h3><blockquote>
+<p>useContext(MyContext) 只是让你能够读取 context 的值以及订阅 context 的变化。你仍然需要在上层组件树中使用 &lt;MyContext.Provider&gt; 来为下层组件提供 context</p>
+</blockquote>
+<h2 id="额外的Hook"><a href="#额外的Hook" class="headerlink" title="额外的Hook"></a>额外的Hook</h2><ol>
+<li>useReducer<pre><code>const [state, dispatch] = useReducer(reducer, initialArg, init);</code></pre>
+<h3 id="它拥有三个值，第一个值是reducer函数-他会返回新的值来覆盖原来的值-第二个值是初始化的参数，第三个值是惰性初始化-需要将-init-函数作为-useReducer-的第三个参数传入，这样初始-state-将被设置为-init-initialArg"><a href="#它拥有三个值，第一个值是reducer函数-他会返回新的值来覆盖原来的值-第二个值是初始化的参数，第三个值是惰性初始化-需要将-init-函数作为-useReducer-的第三个参数传入，这样初始-state-将被设置为-init-initialArg" class="headerlink" title="它拥有三个值，第一个值是reducer函数,他会返回新的值来覆盖原来的值,第二个值是初始化的参数，第三个值是惰性初始化,需要将 init 函数作为 useReducer 的第三个参数传入，这样初始 state 将被设置为 init(initialArg)"></a>它拥有三个值，第一个值是reducer函数,他会返回新的值来覆盖原来的值,第二个值是初始化的参数，第三个值是惰性初始化,需要将 init 函数作为 useReducer 的第三个参数传入，这样初始 state 将被设置为 init(initialArg)</h3></li>
+</ol>
+<h2 id="注意-传入函数不要在生成dom的函数中-否则首次调用会执行两回"><a href="#注意-传入函数不要在生成dom的函数中-否则首次调用会执行两回" class="headerlink" title="注意 传入函数不要在生成dom的函数中,否则首次调用会执行两回"></a>注意 传入函数不要在生成dom的函数中,否则首次调用会执行两回</h2><pre><code>function init(initialCount) &#123;
+    return &#123; count: initialCount &#125;;
+&#125;
+function reducer(state, action) &#123;
+    switch (action.type) &#123;
+        case &#39;increment&#39;:
+          return &#123; count: state.count + 1 &#125;;
+        case &#39;decrement&#39;:
+          return &#123; count: state.count - 1 &#125;;
+        case &#39;reset&#39;:
+          return init(action.payload);
+        default:
+          throw new Error();
+    &#125;
+&#125;
+function Counter(&#123; initialCount &#125;) &#123;
+    const [state, dispatch] = useReducer(reducer, initialCount, init);
+    return (
+        &lt;div&gt;
+          Count: &#123;state.count&#125;
+          &lt;button
+            onClick=&#123;() =&gt; dispatch(&#123; type: &#39;reset&#39;, payload: initialCount &#125;)&#125;&gt;
+            Reset
+          &lt;/button&gt;
+          &lt;button onClick=&#123;() =&gt; dispatch(&#123; type: &#39;decrement&#39; &#125;)&#125;&gt;-&lt;/button&gt;
+          &lt;button onClick=&#123;() =&gt; dispatch(&#123; type: &#39;increment&#39; &#125;)&#125;&gt;+&lt;/button&gt;
+        &lt;div /&gt;
+    );
+&#125;</code></pre>
+<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><pre><code>const [count, setCount] = useState(1);
+    const [val, setVal] = useState(&#39;&#39;);
+    const [count, setCount] = useState(1);
+    const callback = useCallback(() =&gt; &#123;
+        console.log(count);
+    &#125;, [count]);
+    return &lt;div&gt;
+        &lt;h4&gt;&#123;count&#125;&lt;/h4&gt;
+        &lt;h4&gt;&#123;set.size&#125;&lt;/h4&gt;
+        &lt;div&gt;
+            &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;+&lt;/button&gt;
+            &lt;input value=&#123;val&#125; onChange=&#123;event =&gt; setVal(event.target.value)&#125;/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;;
+</code></pre>
+<ul>
+<li>在所依赖的count变化时会返回新的函数,count没有变化时不变<h4 id="会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数"><a href="#会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数" class="headerlink" title="会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数"></a>会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的函数</h4><h3 id="其可以应用在父组件向子组件传参-当父组件里面的值变化时，使子组件避免不必要的更新"><a href="#其可以应用在父组件向子组件传参-当父组件里面的值变化时，使子组件避免不必要的更新" class="headerlink" title="其可以应用在父组件向子组件传参,当父组件里面的值变化时，使子组件避免不必要的更新"></a>其可以应用在父组件向子组件传参,当父组件里面的值变化时，使子组件避免不必要的更新</h3></li>
+</ul>
+<h2 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h2><pre><code>export default function WithMemo() &#123;
+    const [count, setCount] = useState(1);
+    const [val, setValue] = useState(&#39;&#39;);
+    const expensive = useMemo(() =&gt; &#123;
+        console.log(&#39;compute&#39;);
+        let sum = 0;
+        for (let i = 0; i &lt; count * 100; i++) &#123;
+            sum += i;
+        &#125;
+        return sum;
+    &#125;, [count]);
+
+    return &lt;div&gt;
+        &lt;h4&gt;&#123;count&#125;-&#123;expensive&#125;&lt;/h4&gt;
+        &#123;val&#125;
+        &lt;div&gt;
+            &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;+c1&lt;/button&gt;
+            &lt;input value=&#123;val&#125; onChange=&#123;event =&gt; setValue(event.target.value)&#125;/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;;</code></pre>
+<ul>
+<li> 同上,会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且返回缓存的变量<h3 id="使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。"><a href="#使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。" class="headerlink" title="使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。"></a>使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。</h3></li>
+</ul>
+<h3 id="useRef-返回一个可变的-ref-对象，其-current-属性被初始化为传入的参数。返回的-ref-对象在组件的整个生命周期内保持不变。"><a href="#useRef-返回一个可变的-ref-对象，其-current-属性被初始化为传入的参数。返回的-ref-对象在组件的整个生命周期内保持不变。" class="headerlink" title="useRef  返回一个可变的 ref 对象，其 .current 属性被初始化为传入的参数。返回的 ref 对象在组件的整个生命周期内保持不变。"></a>useRef  返回一个可变的 ref 对象，其 .current 属性被初始化为传入的参数。返回的 ref 对象在组件的整个生命周期内保持不变。</h3><pre><code>const refContainer = useRef(null);</code></pre>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre><code>function TextInputWithFocusButton() &#123;
+  const inputEl = useRef(null);
+  const onButtonClick = () =&gt; &#123;
+    // `current` 指向已挂载到 DOM 上的文本输入元素
+    inputEl.current.focus();
+  &#125;;
+  return (
+    &lt;div&gt;
+      &lt;input ref=&#123;inputEl&#125; type=&quot;text&quot;/&gt;
+      &lt;button onClick=&#123;onButtonClick&#125;&gt;Focus the input&lt;/button&gt;
+    &lt;/div&gt;
+  );
+&#125;</code></pre>
+<h3 id="还有很多hook方法-例如"><a href="#还有很多hook方法-例如" class="headerlink" title="还有很多hook方法 例如"></a>还有很多hook方法 例如</h3><ol>
+<li>useImperativeHandle</li>
+<li>useLayoutEffect</li>
+<li>useDebugValue</li>
+</ol>
+<p>下次再见</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>TypeScript</title>
+    <url>/2020/12/30/TypeScript/</url>
+    <content><![CDATA[<h3 id="1-基础类型"><a href="#1-基础类型" class="headerlink" title="1.基础类型"></a>1.基础类型</h3><p>为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。TypeScript支持与javaScript几乎相同的数据类型，此外还提供了实用的的枚举类型方便我们使用。</p>
+<h4 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h4><p>k</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>TypeScript</title>
+    <url>/2021/01/04/Object/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
