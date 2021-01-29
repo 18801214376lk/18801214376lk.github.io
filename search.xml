@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2020/12/25/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>TypeScript</title>
+    <url>/2021/01/04/Object/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>TypeScript</title>
     <url>/2020/12/30/TypeScript/</url>
-    <content><![CDATA[<h3 id="1-基础类型"><a href="#1-基础类型" class="headerlink" title="1.基础类型"></a>1.基础类型</h3><p>为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。TypeScript支持与javaScript几乎相同的数据类型，此外还提供了实用的的枚举类型方便我们使用。</p>
-<h4 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h4><p>k</p>
-]]></content>
+    <content><![CDATA[<h3 id="1-基础类型"><a href="#1-基础类型" class="headerlink" title="1.基础类型"></a>1.基础类型</h3><p><strong>为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。TypeScript支持与javaScript几乎相同的数据类型，此外还提供了实用的的枚举类型方便我们使用。</strong></p>
+<h4 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h4>]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
   </entry>
   <entry>
     <title>class的总结</title>
@@ -171,94 +192,6 @@ class IncreasingCounter&#123;
 ]]></content>
   </entry>
   <entry>
-    <title>JavaScript的严格模式</title>
-    <url>/2020/12/30/%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h4 id="声明严格模式"><a href="#声明严格模式" class="headerlink" title="声明严格模式"></a>声明严格模式</h4><p>通过在脚本或函数的头部添加use strict,表达式来声明。</p>
-<pre><code class="js">&#39;use strict&#39;
-x = 3.14;   // 报错(x 未定义)</code></pre>
-<p>注:在函数内部声明的变量是局部作用域(只在函数内使用严格模式)</p>
-<pre><code class="js">function myFunction()&#123;
-    &#39;use strict&#39;
-    y = 3.15 //报错(未定义)
-&#125;</code></pre>
-<h4 id="严格模式限制"><a href="#严格模式限制" class="headerlink" title="严格模式限制"></a>严格模式限制</h4><h5 id="1-不允许使用未声明的变量："><a href="#1-不允许使用未声明的变量：" class="headerlink" title="1.不允许使用未声明的变量："></a>1.不允许使用未声明的变量：</h5><pre><code class="js">&#39;use strict&#39;;
-x = 3.14 : // 报错未定义</code></pre>
-<h5 id="2-不允许删除变量、对象和函数。"><a href="#2-不允许删除变量、对象和函数。" class="headerlink" title="2.不允许删除变量、对象和函数。"></a>2.不允许删除变量、对象和函数。</h5><pre><code class="js">&#39;use strict&#39;;
-
-var x = 3.15
-
-delect x, // 错误
-
-function x(p1, p2) &#123;&#125;;
-
-delete x;                // 报错</code></pre>
-<h5 id="3-不允许变量重名"><a href="#3-不允许变量重名" class="headerlink" title="3.不允许变量重名"></a>3.不允许变量重名</h5><pre><code class="js">&#39;use strict&#39;
-function x(p1,p1)&#123;&#125;; // 报错</code></pre>
-<h5 id="4-不允许使用8进制"><a href="#4-不允许使用8进制" class="headerlink" title="4.不允许使用8进制"></a>4.不允许使用8进制</h5><pre><code class="js">&#39;use strict&#39;
-var x = 010; // 报错</code></pre>
-<h5 id="5-不允许使用转义字符"><a href="#5-不允许使用转义字符" class="headerlink" title="5.不允许使用转义字符"></a>5.不允许使用转义字符</h5><pre><code class="js">&#39;use strict&#39;
-var x = \010; //报错</code></pre>
-<h5 id="6-不允许对只读属性赋值；"><a href="#6-不允许对只读属性赋值；" class="headerlink" title="6.不允许对只读属性赋值；"></a>6.不允许对只读属性赋值；</h5><pre><code class="js">&#39;use strict&#39;;
-var obj = &#123;&#125;;
-Object.defineProperty(obj,&#39;x&#39;,&#123;value:0,writable:false&#125;)
-obj.x = 3.14 //报错</code></pre>
-<h5 id="7-不允许删除一个不允许删除的属性"><a href="#7-不允许删除一个不允许删除的属性" class="headerlink" title="7.不允许删除一个不允许删除的属性"></a>7.不允许删除一个不允许删除的属性</h5><pre><code class="js">&#39;use strict&#39;
-delete Object.proptotype //报错</code></pre>
-<h5 id="8-变量名不能使用-“eval”-和-“arguments”字符串；"><a href="#8-变量名不能使用-“eval”-和-“arguments”字符串；" class="headerlink" title="8.变量名不能使用  “eval”  和 “arguments”字符串；"></a>8.变量名不能使用  “eval”  和 “arguments”字符串；</h5><pre><code class="js">&#39;use strict&#39;
-var eval = 3.15; //报错
-var arguments = 3.15 //报错</code></pre>
-<h5 id="9-处于安全原因-作用域eval-创建的变量不能被调用"><a href="#9-处于安全原因-作用域eval-创建的变量不能被调用" class="headerlink" title="9.处于安全原因,作用域eval()创建的变量不能被调用"></a>9.处于安全原因,作用域eval()创建的变量不能被调用</h5><pre><code class="js">&#39;use strict&#39;
-eval (&#39;var x = 3&#39;);
-conaole.log(x) // 报错</code></pre>
-<h5 id="10-禁止this关键字指向全局对象。"><a href="#10-禁止this关键字指向全局对象。" class="headerlink" title="10.禁止this关键字指向全局对象。"></a>10.禁止this关键字指向全局对象。</h5><pre><code class="js">//非严格模式
-function f()&#123;
-    return !this;
-&#125; 
-// 返回false,默认指向全局对象，！this就是false
-
-&#39;use strict&#39;
-function f()&#123;
-    return this
-&#125;
-// 严格模式下，this的值默认为undefined ,!this就是true</code></pre>
-<h5 id="11-严格模式保留字"><a href="#11-严格模式保留字" class="headerlink" title="11.严格模式保留字"></a>11.严格模式保留字</h5><ul>
-<li>implements</li>
-<li>interface</li>
-<li>let</li>
-<li>package</li>
-<li>private</li>
-<li>protected</li>
-<li>public</li>
-<li>static</li>
-<li>yield</li>
-</ul>
-<pre><code class="js">&quot;use strict&quot;;
-var public = 1500;      // 报错</code></pre>
-]]></content>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>同源及跨域</title>
-    <url>/2021/01/11/%E5%90%8C%E6%BA%90%E5%8F%8A%E8%B7%A8%E5%9F%9F/</url>
-    <content><![CDATA[<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><ul>
-<li>ajax 请求时，浏览器要求当前网页和server必须同源（安全）</li>
-<li>同源：协议，域名，端口，三者必须一致</li>
-</ul>
-<blockquote>
-<p><strong>同源策略限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。</strong></p>
-</blockquote>
-<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>跨域，指的是从一个域名去请求另外一个域名的资源。即跨域名请求！跨域时，浏览器不能执行其他域名网站的脚本，是由浏览器的同源策略造成的，是浏览器施加的安全限制。</p>
-<p>跨域的严格一点来说就是只要协议，域名，端口有任何一个的不同，就被当作是跨域。</p>
-<h3 id="解决同源"><a href="#解决同源" class="headerlink" title="解决同源"></a>解决同源</h3><h5 id="加载图片-引用CSS-和-JS文件时-可无视同源策略"><a href="#加载图片-引用CSS-和-JS文件时-可无视同源策略" class="headerlink" title="加载图片 引用CSS 和 JS文件时 可无视同源策略"></a>加载图片 引用CSS 和 JS文件时 可无视同源策略</h5><ul>
-<li><code>&lt;img src=&quot;跨域的图片地址&quot; /&gt;</code>  <strong>可用于统计打点，可使用第三方统计服务</strong></li>
-<li><code>&lt;link href=&quot;跨域的css地址&quot; /&gt;</code> <strong>可使用CDN,CDN一般都是外域</strong></li>
-<li><code>&lt;script src=&quot;跨域的js地址&quot;&gt;&lt;/script&gt;</code> <strong>可实现JSONP</strong></li>
-</ul>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><h4 id="1-JSONP"><a href="#1-JSONP" class="headerlink" title="1.  JSONP"></a>1.  JSONP</h4><h4 id="2-jquery-自带jsonp"><a href="#2-jquery-自带jsonp" class="headerlink" title="2. jquery 自带jsonp"></a>2. jquery 自带jsonp</h4>]]></content>
-  </entry>
-  <entry>
     <title>hook的整理使用</title>
     <url>/2020/12/27/hook/</url>
     <content><![CDATA[<h3 id="hook简介"><a href="#hook简介" class="headerlink" title="hook简介"></a>hook简介</h3><font color=#FF0000 >
@@ -405,9 +338,121 @@ function Counter(&#123; initialCount &#125;) &#123;
 ]]></content>
   </entry>
   <entry>
-    <title>TypeScript</title>
-    <url>/2021/01/04/Object/</url>
-    <content><![CDATA[]]></content>
+    <title>JavaScript的严格模式</title>
+    <url>/2020/12/30/%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h4 id="声明严格模式"><a href="#声明严格模式" class="headerlink" title="声明严格模式"></a>声明严格模式</h4><p>通过在脚本或函数的头部添加use strict,表达式来声明。</p>
+<pre><code class="js">&#39;use strict&#39;
+x = 3.14;   // 报错(x 未定义)</code></pre>
+<p>注:在函数内部声明的变量是局部作用域(只在函数内使用严格模式)</p>
+<pre><code class="js">function myFunction()&#123;
+    &#39;use strict&#39;
+    y = 3.15 //报错(未定义)
+&#125;</code></pre>
+<h4 id="严格模式限制"><a href="#严格模式限制" class="headerlink" title="严格模式限制"></a>严格模式限制</h4><h5 id="1-不允许使用未声明的变量："><a href="#1-不允许使用未声明的变量：" class="headerlink" title="1.不允许使用未声明的变量："></a>1.不允许使用未声明的变量：</h5><pre><code class="js">&#39;use strict&#39;;
+x = 3.14 : // 报错未定义</code></pre>
+<h5 id="2-不允许删除变量、对象和函数。"><a href="#2-不允许删除变量、对象和函数。" class="headerlink" title="2.不允许删除变量、对象和函数。"></a>2.不允许删除变量、对象和函数。</h5><pre><code class="js">&#39;use strict&#39;;
+
+var x = 3.15
+
+delect x, // 错误
+
+function x(p1, p2) &#123;&#125;;
+
+delete x;                // 报错</code></pre>
+<h5 id="3-不允许变量重名"><a href="#3-不允许变量重名" class="headerlink" title="3.不允许变量重名"></a>3.不允许变量重名</h5><pre><code class="js">&#39;use strict&#39;
+function x(p1,p1)&#123;&#125;; // 报错</code></pre>
+<h5 id="4-不允许使用8进制"><a href="#4-不允许使用8进制" class="headerlink" title="4.不允许使用8进制"></a>4.不允许使用8进制</h5><pre><code class="js">&#39;use strict&#39;
+var x = 010; // 报错</code></pre>
+<h5 id="5-不允许使用转义字符"><a href="#5-不允许使用转义字符" class="headerlink" title="5.不允许使用转义字符"></a>5.不允许使用转义字符</h5><pre><code class="js">&#39;use strict&#39;
+var x = \010; //报错</code></pre>
+<h5 id="6-不允许对只读属性赋值；"><a href="#6-不允许对只读属性赋值；" class="headerlink" title="6.不允许对只读属性赋值；"></a>6.不允许对只读属性赋值；</h5><pre><code class="js">&#39;use strict&#39;;
+var obj = &#123;&#125;;
+Object.defineProperty(obj,&#39;x&#39;,&#123;value:0,writable:false&#125;)
+obj.x = 3.14 //报错</code></pre>
+<h5 id="7-不允许删除一个不允许删除的属性"><a href="#7-不允许删除一个不允许删除的属性" class="headerlink" title="7.不允许删除一个不允许删除的属性"></a>7.不允许删除一个不允许删除的属性</h5><pre><code class="js">&#39;use strict&#39;
+delete Object.proptotype //报错</code></pre>
+<h5 id="8-变量名不能使用-“eval”-和-“arguments”字符串；"><a href="#8-变量名不能使用-“eval”-和-“arguments”字符串；" class="headerlink" title="8.变量名不能使用  “eval”  和 “arguments”字符串；"></a>8.变量名不能使用  “eval”  和 “arguments”字符串；</h5><pre><code class="js">&#39;use strict&#39;
+var eval = 3.15; //报错
+var arguments = 3.15 //报错</code></pre>
+<h5 id="9-处于安全原因-作用域eval-创建的变量不能被调用"><a href="#9-处于安全原因-作用域eval-创建的变量不能被调用" class="headerlink" title="9.处于安全原因,作用域eval()创建的变量不能被调用"></a>9.处于安全原因,作用域eval()创建的变量不能被调用</h5><pre><code class="js">&#39;use strict&#39;
+eval (&#39;var x = 3&#39;);
+conaole.log(x) // 报错</code></pre>
+<h5 id="10-禁止this关键字指向全局对象。"><a href="#10-禁止this关键字指向全局对象。" class="headerlink" title="10.禁止this关键字指向全局对象。"></a>10.禁止this关键字指向全局对象。</h5><pre><code class="js">//非严格模式
+function f()&#123;
+    return !this;
+&#125; 
+// 返回false,默认指向全局对象，！this就是false
+
+&#39;use strict&#39;
+function f()&#123;
+    return this
+&#125;
+// 严格模式下，this的值默认为undefined ,!this就是true</code></pre>
+<h5 id="11-严格模式保留字"><a href="#11-严格模式保留字" class="headerlink" title="11.严格模式保留字"></a>11.严格模式保留字</h5><ul>
+<li>implements</li>
+<li>interface</li>
+<li>let</li>
+<li>package</li>
+<li>private</li>
+<li>protected</li>
+<li>public</li>
+<li>static</li>
+<li>yield</li>
+</ul>
+<pre><code class="js">&quot;use strict&quot;;
+var public = 1500;      // 报错</code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title>vue面试题整理</title>
+    <url>/2021/01/28/vue%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<h4 id="1-history模式，页面返回404，如何解决"><a href="#1-history模式，页面返回404，如何解决" class="headerlink" title="1. history模式，页面返回404，如何解决?"></a>1. history模式，页面返回404，如何解决?</h4><p>history是html5新增的api，他的功能是修改地址栏但是不像服务器端发送真是请求，如果页面返回404，说明发送了请求到服务器端,并且服务器端对该请求没有做处理，那么解决404的方案就是服务器端对于这类请求重定向到某个页面即可</p>
+<h4 id="2-聊一聊commonjs规范"><a href="#2-聊一聊commonjs规范" class="headerlink" title="2.聊一聊commonjs规范"></a>2.聊一聊commonjs规范</h4><h5 id="概述-：-node应用由模块组成，采用的commonjs模块规范。每一个文件就是一个模块，拥有自己独立的作用域，变量，以及方法等，对其他的模块都不可见。CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module-exports）是对外的接口。加载某个模块，其实是加载该模块的module-exports属性。require方法用于加载模块。"><a href="#概述-：-node应用由模块组成，采用的commonjs模块规范。每一个文件就是一个模块，拥有自己独立的作用域，变量，以及方法等，对其他的模块都不可见。CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module-exports）是对外的接口。加载某个模块，其实是加载该模块的module-exports属性。require方法用于加载模块。" class="headerlink" title="概述 ： node应用由模块组成，采用的commonjs模块规范。每一个文件就是一个模块，拥有自己独立的作用域，变量，以及方法等，对其他的模块都不可见。CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。加载某个模块，其实是加载该模块的module.exports属性。require方法用于加载模块。"></a>概述 ： node应用由模块组成，采用的commonjs模块规范。每一个文件就是一个模块，拥有自己独立的作用域，变量，以及方法等，对其他的模块都不可见。CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。加载某个模块，其实是加载该模块的module.exports属性。require方法用于加载模块。</h5><h5 id="CommonJS模块的特点如下"><a href="#CommonJS模块的特点如下" class="headerlink" title="CommonJS模块的特点如下 :"></a>CommonJS模块的特点如下 :</h5><h5 id="1-所有代码都运行在模块作用域，不会污染全局作用域。"><a href="#1-所有代码都运行在模块作用域，不会污染全局作用域。" class="headerlink" title="(1)  所有代码都运行在模块作用域，不会污染全局作用域。"></a>(1)  所有代码都运行在模块作用域，不会污染全局作用域。</h5><h5 id="2-模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。"><a href="#2-模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。" class="headerlink" title="(2) 模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。"></a>(2) 模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。</h5><h5 id="3-模块加载的顺序，按照其在代码中出现的顺序。"><a href="#3-模块加载的顺序，按照其在代码中出现的顺序。" class="headerlink" title="(3) 模块加载的顺序，按照其在代码中出现的顺序。"></a>(3) 模块加载的顺序，按照其在代码中出现的顺序。</h5><h5 id="模块加载机制-："><a href="#模块加载机制-：" class="headerlink" title="模块加载机制 ："></a>模块加载机制 ：</h5><h5 id="commonsJS的加载机制，输入的是被输出值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值了。"><a href="#commonsJS的加载机制，输入的是被输出值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值了。" class="headerlink" title="commonsJS的加载机制，输入的是被输出值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值了。"></a>commonsJS的加载机制，输入的是被输出值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值了。</h5><h5 id="require命令-："><a href="#require命令-：" class="headerlink" title="require命令 ："></a>require命令 ：</h5><h5 id="1-require命令用于加载模块文件，相当于读入并执行一个js文件，然后返回该模块的exports对象，没有发现指定模块，则就会报错"><a href="#1-require命令用于加载模块文件，相当于读入并执行一个js文件，然后返回该模块的exports对象，没有发现指定模块，则就会报错" class="headerlink" title="(1) require命令用于加载模块文件，相当于读入并执行一个js文件，然后返回该模块的exports对象，没有发现指定模块，则就会报错"></a>(1) require命令用于加载模块文件，相当于读入并执行一个js文件，然后返回该模块的exports对象，没有发现指定模块，则就会报错</h5><h5 id="2-加载规则"><a href="#2-加载规则" class="headerlink" title="(2) 加载规则 :"></a>(2) 加载规则 :</h5><p>​     a:如果参数字符串以“/”开头，则表示加载的是一个位于绝对路径的模块文件。比如，require(‘/home/marco/foo.js’)将加载/home/marco/foo.js。</p>
+<p>​     b.如果参数字符串以“./”开头，则表示加载的是一个位于相对路径（跟当前执行脚本的位置相比）的模块文件。比如，require(‘./circle’)将加载当前脚本同一目录的circle.js。</p>
+<p>​     c.如果参数字符串不以“./“或”/“开头，则表示加载的是一个默认提供的核心模块（位于Node的系统安装目录中），或者一个位于各级node_modules目录的已安装模块（全局安装或局部安装）。</p>
+<h5 id="模块的缓存：第一次加载该模块，node会缓存该模块。再次加载，直接从缓存中取出该模块的module-exports属性。缓存保存在require-cache中，可操作该属性进行删除。"><a href="#模块的缓存：第一次加载该模块，node会缓存该模块。再次加载，直接从缓存中取出该模块的module-exports属性。缓存保存在require-cache中，可操作该属性进行删除。" class="headerlink" title="模块的缓存：第一次加载该模块，node会缓存该模块。再次加载，直接从缓存中取出该模块的module.exports属性。缓存保存在require.cache中，可操作该属性进行删除。"></a>模块的缓存：第一次加载该模块，node会缓存该模块。再次加载，直接从缓存中取出该模块的module.exports属性。缓存保存在require.cache中，可操作该属性进行删除。</h5><h4 id="3-vue的指令有哪些？作用是什么？"><a href="#3-vue的指令有哪些？作用是什么？" class="headerlink" title="3.vue的指令有哪些？作用是什么？"></a>3.vue的指令有哪些？作用是什么？</h4><pre><code>&#123;&#123;&#125;&#125; : 插值
+
+v-if,v-else-if,v-else : 条件成立渲染
+
+v-show : 根据条件动态切换display的值
+
+v-bind : 动态绑定属性值
+
+v-on : 监听属性
+
+v-modul ：在表单控件或组件上进行双向绑定
+
+v-html : 插入字符串并解析html
+
+v-text：同&#123;&#123;&#125;&#125;  插到标签上</code></pre>
+<h4 id="4-eventBus是什么？"><a href="#4-eventBus是什么？" class="headerlink" title="4.eventBus是什么？"></a>4.eventBus是什么？</h4><p>​       是vue跨组件传参的方法，首先在根组件中输入 Vue.prototype.$bus=new Vue()  然后 在要传参的组件中通过this.$bus.$emit传递自定义事件和参数 然后在接收参数的组件中通过this.$bus.$on接收自定义事件名和参数</p>
+<h4 id="5-vue-router的原理（history、hash）"><a href="#5-vue-router的原理（history、hash）" class="headerlink" title="5.vue-router的原理（history、hash）"></a>5.vue-router的原理（history、hash）</h4><p>特点是更新视图但不重新请求页面，是前端路由原理的核心之一，目前在浏览器环境中这一功能的实现主要有2种方式,Hash模式和History模式</p>
+<p>（1）利用URL中的hash(“#”);</p>
+<p>（2）利用History,在HTML5中新增的方法;</p>
+<p>1、Hash模式：<br>   hash（#）是URL 的锚点，代表的是网页中的一个位置，单单改变#后的部分，浏览器只会滚动到相应位置，不会重新加载网页，也就是说 #是用来指导浏览器动作的，对服务器端完全无用，HTTP请求中也不会不包括#；同时每一次改变#后的部分，都会在浏览器的访问历史中增加一个记录，使用”后退”按钮，就可以回到上一个位置；</p>
+<p>2、History模式： </p>
+<p>  HTML5 History API提供了一种功能，能让开发人员在不刷新整个页面的情况下修改站点的URL，就是利用 history.pushState API 来完成 URL 跳转而无须重新加载页面；</p>
+<p>通常情况下，我们会选择使用History模式，原因就是Hash模式下URL带着‘#’会显得不美观；</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>同源及跨域</title>
+    <url>/2021/01/11/%E5%90%8C%E6%BA%90%E5%8F%8A%E8%B7%A8%E5%9F%9F/</url>
+    <content><![CDATA[<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><ul>
+<li>ajax 请求时，浏览器要求当前网页和server必须同源（安全）</li>
+<li>同源：协议，域名，端口，三者必须一致</li>
+</ul>
+<blockquote>
+<p><strong>同源策略限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。</strong></p>
+</blockquote>
+<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>跨域，指的是从一个域名去请求另外一个域名的资源。即跨域名请求！跨域时，浏览器不能执行其他域名网站的脚本，是由浏览器的同源策略造成的，是浏览器施加的安全限制。</p>
+<p>跨域的严格一点来说就是只要协议，域名，端口有任何一个的不同，就被当作是跨域。</p>
+<h3 id="解决同源"><a href="#解决同源" class="headerlink" title="解决同源"></a>解决同源</h3><h5 id="加载图片-引用CSS-和-JS文件时-可无视同源策略"><a href="#加载图片-引用CSS-和-JS文件时-可无视同源策略" class="headerlink" title="加载图片 引用CSS 和 JS文件时 可无视同源策略"></a>加载图片 引用CSS 和 JS文件时 可无视同源策略</h5><ul>
+<li><code>&lt;img src=&quot;跨域的图片地址&quot; /&gt;</code>  <strong>可用于统计打点，可使用第三方统计服务</strong></li>
+<li><code>&lt;link href=&quot;跨域的css地址&quot; /&gt;</code> <strong>可使用CDN,CDN一般都是外域</strong></li>
+<li><code>&lt;script src=&quot;跨域的js地址&quot;&gt;&lt;/script&gt;</code> <strong>可实现JSONP</strong></li>
+</ul>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><h4 id="1-JSONP"><a href="#1-JSONP" class="headerlink" title="1.  JSONP"></a>1.  JSONP</h4><h4 id="2-jquery-自带jsonp"><a href="#2-jquery-自带jsonp" class="headerlink" title="2. jquery 自带jsonp"></a>2. jquery 自带jsonp</h4>]]></content>
   </entry>
   <entry>
     <title>proxy</title>
